@@ -1,0 +1,225 @@
+swagger: "2.0"
+info:
+  description: "Sample API for Argent Bank phase 2 transaction."
+  version: "1.0.0"
+  title: "Swagger Argent Bank"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "URL_API"
+basePath: "/api/v1/user"
+tags:
+- name: "Transaction"
+  description: "Everything about transactions"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /transactions:
+    get:
+      tags:
+      - "Transaction"
+      summary: "Finds all transactions"
+      description: "View all of a user's transactions for the current month"
+      operationId: "findAllTransactions"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionMonthDate"
+        in: "query"
+        description: "Month date values that need to be considered for filter"
+        required: false
+        type: "string"
+        items:
+          enum:
+          - "2021-09"
+          default: "2021-09"
+      - name: "Authorization"
+        in: "header"
+        description: "JWT access token"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        "400":
+          description: "Invalid status value"
+
+  /transactions/:id:
+    get:
+      tags:
+      - "Transaction"
+      summary: "Get transaction by transactionId"
+      description: ""
+      operationId: "getTransactionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionId"
+        in: "query"
+        description: "id of the transacton"
+        required: true
+        type: "string"
+      - name: "Authorization"
+        in: "header"
+        description: "JWT access token"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Invalid transactionId"
+        "404":
+          description: "transaction not found"
+          
+          
+          
+    post:
+      tags:
+      - "Transaction"
+      summary: "Add a new transaction"
+      description: ""
+      operationId: "addTransactionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionId"
+        in: "query"
+        description: "id of the transacton"
+        required: true
+        type: "string"
+      - name: "Authorization"
+        in: "header"
+        description: "JWT access token"
+        required: true
+        type: "string"  
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Invalid transactionId"
+        "404":
+          description: "transaction not found"
+          
+          
+    put:
+      tags:
+      - "Transaction"
+      summary: "Update an existing transaction"
+      description: ""
+      operationId: "updateTransactionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionId"
+        in: "query"
+        description: "id of the transacton"
+        required: true
+        type: "string"
+      - name: "Authorization"
+        in: "header"
+        description: "JWT access token"
+        required: true
+        type: "string"  
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Invalid transactionId"
+        "404":
+          description: "transaction not found"
+          
+          
+          
+    delete:
+      tags:
+      - "Transaction"
+      summary: "Delete an existing transaction"
+      description: ""
+      operationId: "deleteTransactionById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "transactionId"
+        in: "query"
+        description: "id of the transacton"
+        required: true
+        type: "string"
+      - name: "Authorization"
+        in: "header"
+        description: "JWT access token"
+        required: true
+        type: "string"  
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Invalid transactionId"
+        "404":
+          description: "transaction not found"
+        
+        
+
+definitions:
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "6137c253286d3827245141e1"
+      title:
+        type: "string"
+        example: "Argent Bank Checking (x8349)"
+      amountCents:
+        type: "number"
+        example: 208279
+      description:
+        type: "string"
+        example: "Golden Sun Bakery"
+      state:
+        type: "string"
+        example: "Available Balance"
+      dateISO:
+        type: "string"
+        format: "date-time"
+        example: "2021-09-07T21:00:00.222Z"
+
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+        
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
