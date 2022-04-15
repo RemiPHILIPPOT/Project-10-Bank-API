@@ -1,5 +1,7 @@
 # IDE files
 .idea
+# Env
+.env
 
 # Logs
 logs
