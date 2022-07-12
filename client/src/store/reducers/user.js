@@ -1,6 +1,6 @@
 import {GET_JWT, GET_USER_PROFILE, USER_LOGOUT, UPDATE_USER_PROFILE} from '../actions/constants'
 
-const userReducer = (state = [], {type, payload}) => {
+const userReducer = (state = {}, {type, payload}) => {
     switch (type) {
       case GET_USER_PROFILE:
         return {

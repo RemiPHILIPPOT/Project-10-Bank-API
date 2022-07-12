@@ -74,8 +74,6 @@ And for the API model that you will be proposing for transactitons, the wirefram
 
 
 
-Ajouter livrable .env
+Ajouter livrable .env à coller dans server
 préciser dans le readme de creer le .env qui à été fourni dans le livrable
-refaire point sur le CSS
-swagger
-faire plusieurs commit
+sur README utilisation de mongoDB atlas
