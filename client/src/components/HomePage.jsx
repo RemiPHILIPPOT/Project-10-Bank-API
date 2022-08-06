@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from 'react-redux';
 import Navigation from './Navigation';
 import '../main.css';
 import iconChat from '../assets/img/icon-chat.png';
@@ -8,11 +7,10 @@ import iconSecurity from '../assets/img/icon-security.png';
 import Footer from "./Footer";
 
 const HomePage = () => {
-    const profile = useSelector(state => state.user.profile);
 
     return (
         <>
-        <Navigation profile={profile}></Navigation>
+        <Navigation></Navigation>
         <main>
             <div className="hero">
                 <section className="hero-content">

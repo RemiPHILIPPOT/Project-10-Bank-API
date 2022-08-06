@@ -2,14 +2,13 @@
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
-## Getting Started
-
 ### Prerequisites
 
 Argent Bank uses the following tech stack:
 
 - [Node.js v12](https://nodejs.org/en/)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/lp/try2?utm_content=rlsavisitor&utm_source=google&utm_campaign=gs_emea_rlsamulti_search_core_brand_atlas_desktop_rlsa&utm_term=mongodb%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=14412646455&adgroup=131761126452&gclid=CjwKCAjwlqOXBhBqEiwA-hhitKCtSMu95YnsBuai1nTwGiChaHFwzWqenZHC3vMK-qCTm6RXWCeUFBoCh8oQAvD_BwE)
 
 Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
 
@@ -26,6 +25,7 @@ mongo --version
 1. Fork this repo
 1. Clone the repo onto your computer
 1. Open a terminal window in the cloned project
+1. Add the .env file in the server folder provided in the deliverables
 1. Run the following commands:
 
 ```bash
@@ -74,6 +74,3 @@ And for the API model that you will be proposing for transactitons, the wirefram
 
 
 
-Ajouter livrable .env à coller dans server
-préciser dans le readme de creer le .env qui à été fourni dans le livrable
-sur README utilisation de mongoDB atlas

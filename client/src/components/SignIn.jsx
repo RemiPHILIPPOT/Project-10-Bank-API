@@ -39,7 +39,6 @@ const SignIn = ({ match }) => {
           type: GET_USER_PROFILE,
           payload: user,
         });
-        // console.log(user);
         navigate("/user");
       });
     }
