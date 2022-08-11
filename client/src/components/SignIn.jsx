@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getJWT, getUser } from "../services/user-service";
-import { GET_USER_PROFILE } from "../store/actions/constants";
 import Navigation from "./Navigation";
 import "../main.css";
 import Footer from "./Footer";
+import store from "../store";
+import { getUserProfile } from "../store/actions/actions";
 
 const SignIn = ({ match }) => {
   const {
@@ -15,30 +15,23 @@ const SignIn = ({ match }) => {
     formState: { errors },
   } = useForm();
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
     if (jwt) {
       getUser(jwt).then((user) => {
-        dispatch({
-          type: GET_USER_PROFILE,
-          payload: user,
-        });
+        store.dispatch(getUserProfile(user));
         navigate("/user");
       });
     }
-  }, [dispatch, navigate, jwt]);
+  }, [navigate, jwt]);
 
   const onSubmit = async (e) => {
     const jwt = await getJWT(e);
     if (navigate && jwt) {
       getUser(jwt).then((user) => {
-        dispatch({
-          type: GET_USER_PROFILE,
-          payload: user,
-        });
+        store.dispatch(getUserProfile(user));
         navigate("/user");
       });
     }
@@ -62,7 +55,7 @@ const SignIn = ({ match }) => {
               />
               {errors.email
                 ? errors.email.type === "required" && (
-                    <p>This field is required</p>
+                    <p style={{ color: "red" }}>This field is required</p>
                   )
                 : ""}
             </div>
@@ -77,7 +70,7 @@ const SignIn = ({ match }) => {
               />
               {errors.password
                 ? errors.password.type === "required" && (
-                    <p>This field is required</p>
+                    <p style={{ color: "red" }}>This field is required</p>
                   )
                 : ""}
             </div>
@@ -85,11 +78,10 @@ const SignIn = ({ match }) => {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            <input className="sign-in-button" type="submit" name="Sign In" />
+            <input className="sign-in-button" type="submit" name="Sign In" disabled={errors.password || errors.email} />
           </form>
-          
         </section>
-        <Footer/>
+        <Footer />
       </main>
     </>
   );

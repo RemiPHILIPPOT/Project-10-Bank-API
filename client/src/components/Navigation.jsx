@@ -1,20 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../main.css";
-import { USER_LOGOUT } from "../store/actions/constants";
+
+import { userLogout } from "../store/actions/actions";
 import Logo from "../assets/img/argentBankLogo.png";
+import store from "../store";
 
 const Navigation = () => {
   const profile = useSelector((state) => state.user.profile);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function handleLogout() {
-    dispatch({
-      type: USER_LOGOUT,
-      payload: {},
-    });
+    store.dispatch(userLogout());
     localStorage.removeItem("jwt");
     navigate.push("/");
   }
